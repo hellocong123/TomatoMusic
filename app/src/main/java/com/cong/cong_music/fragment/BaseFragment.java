@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cong.cong_music.Consts;
-import com.cong.cong_music.activity.BaseActivity;
+import com.cong.cong_music.activity.base.BaseActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
