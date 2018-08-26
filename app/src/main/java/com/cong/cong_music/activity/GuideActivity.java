@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.cong.cong_music.R;
+import com.cong.cong_music.activity.base.BaseCommonActivity;
 import com.cong.cong_music.adapter.GuideAdapter;
 import com.cong.cong_music.util.PackageUtil;
 
@@ -63,7 +64,7 @@ public class GuideActivity extends BaseCommonActivity {
     public void bt_login_or_register() {
         setFirst();
         //点击注册登录按钮，跳转到登录界面
-        startActivityAfterFinishThis(LoginActivity.class);
+        startActivityAfterFinishThis(RegisterLoginActivity.class);
     }
 
     public void bt_enter(View view) {

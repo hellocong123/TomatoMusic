@@ -30,39 +30,38 @@ public class SharedPreferencesUtil {
     private final Context context;
 
     public SharedPreferencesUtil(Context context) {
-
         this.context = context.getApplicationContext();
-        mPreferences =   this.context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        mPreferences = this.context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
         mEditor = mPreferences.edit();
     }
 
     public static SharedPreferencesUtil getInstance(Context context) {
-        if (mSharedPreferencesUtil ==null){
-            mSharedPreferencesUtil =new SharedPreferencesUtil(context);
+        if (mSharedPreferencesUtil == null) {
+            mSharedPreferencesUtil = new SharedPreferencesUtil(context);
         }
-        return  mSharedPreferencesUtil;
+        return mSharedPreferencesUtil;
     }
 
     public static SharedPreferencesUtil getCurrentInstance() {
-        return  mSharedPreferencesUtil;
+        return mSharedPreferencesUtil;
     }
 
     public void put(String key, String value) {
-        mEditor.putString(key,value);
+        mEditor.putString(key, value);
         mEditor.commit();
     }
 
-    public void putBoolean(String key,boolean value) {
-        mEditor.putBoolean(key,value);
+    public void putBoolean(String key, boolean value) {
+        mEditor.putBoolean(key, value);
         mEditor.commit();
     }
 
     public String get(String key) {
-        return mPreferences.getString(key,"");
+        return mPreferences.getString(key, "");
     }
 
-    public boolean getBoolean(String key,boolean defaultValue) {
-        return mPreferences.getBoolean(key,defaultValue);
+    public boolean getBoolean(String key, boolean defaultValue) {
+        return mPreferences.getBoolean(key, defaultValue);
     }
 
     public void removeSP(String key) {
@@ -71,8 +70,8 @@ public class SharedPreferencesUtil {
     }
 
     //    自用方法
-    public  void setToken(String token) {
-        put(USER_TOKEN,token);
+    public void setToken(String token) {
+        put(USER_TOKEN, token);
     }
 
     public String getToken() {
@@ -83,8 +82,8 @@ public class SharedPreferencesUtil {
         return get(USER_IM_TOKEN);
     }
 
-    public  void setIMToken(String token) {
-        put(USER_IM_TOKEN,token);
+    public void setIMToken(String token) {
+        put(USER_IM_TOKEN, token);
     }
 
 
@@ -93,11 +92,11 @@ public class SharedPreferencesUtil {
     }
 
     public boolean isFirst() {
-        return getBoolean(FIRST,true);
+        return getBoolean(FIRST, true);
     }
 
     public void setFirst(boolean value) {
-        putBoolean(FIRST,value);
+        putBoolean(FIRST, value);
     }
 
     public String getUserId() {
@@ -105,13 +104,13 @@ public class SharedPreferencesUtil {
     }
 
     public void setUserId(String userId) {
-        put(USER_ID,userId);
+        put(USER_ID, userId);
     }
 
     public void logout() {
-        put(USER_TOKEN,"");
-        put(USER_IM_TOKEN,"");
-        put(USER_ID,"");
+        put(USER_TOKEN, "");
+        put(USER_IM_TOKEN, "");
+        put(USER_ID, "");
     }
 
     public String getLastPlaySongId() {
@@ -119,79 +118,80 @@ public class SharedPreferencesUtil {
     }
 
     public void setLastPlaySongId(String id) {
-        put(CURRENT_PLAY_SONG_ID,id);
+        put(CURRENT_PLAY_SONG_ID, id);
     }
 
     public void setLastSongProgress(int progress) {
-        putInt(LAST_PLAY_SONG_PROGRESS,progress);
+        putInt(LAST_PLAY_SONG_PROGRESS, progress);
     }
 
     private void putInt(String key, int value) {
-        mEditor.putInt(key,value);
+        mEditor.putInt(key, value);
         mEditor.apply();
     }
 
     public int getLastSongProgress() {
-        return getInt(LAST_PLAY_SONG_PROGRESS,0);
+        return getInt(LAST_PLAY_SONG_PROGRESS, 0);
     }
 
-    private int getInt(String key,int defaultValue) {
-        return mPreferences.getInt(key,defaultValue);
+    private int getInt(String key, int defaultValue) {
+        return mPreferences.getInt(key, defaultValue);
     }
 
     public int getGlobalLyricY() {
-        return getInt(KEY_LYRIC_Y,0);
+        return getInt(KEY_LYRIC_Y, 0);
     }
 
     public void setGlobalLyricY(int y) {
-        putInt(KEY_LYRIC_Y,y);
+        putInt(KEY_LYRIC_Y, y);
     }
 
     public boolean isLyricLock() {
-        return getBoolean(KEY_LYRIC_LOCK,false);
+        return getBoolean(KEY_LYRIC_LOCK, false);
     }
 
     public void setLyricLock(boolean value) {
-        putBoolean(KEY_LYRIC_LOCK,value);
+        putBoolean(KEY_LYRIC_LOCK, value);
     }
 
     public boolean isShowLyric() {
-        return getBoolean(KEY_SHOW_LYRIC,false);
+        return getBoolean(KEY_SHOW_LYRIC, false);
     }
 
     public void setShowLyric(boolean value) {
-        putBoolean(KEY_SHOW_LYRIC,value);
+        putBoolean(KEY_SHOW_LYRIC, value);
     }
 
     public void setGlobalLyricFontSize(int size) {
-        putInt(KEY_LYRIC_FONT_SIZE,size);
+        putInt(KEY_LYRIC_FONT_SIZE, size);
     }
 
     public int getGlobalLyricFontSize() {
         //默认18DP
         //根据手机的分辨率从 dip 的单位 转成为 px(像素)
         //根据手机的分辨率从 px 的单位 转成为 dip(像素)
-        return getInt(KEY_LYRIC_FONT_SIZE,DensityUtil.dip2px(this.context, 18));
+        return getInt(KEY_LYRIC_FONT_SIZE, DensityUtil.dip2px(this.context, 18));
     }
 
     public void setGlobalLyricTextColorIndex(int index) {
-        putInt(KEY_LYRIC_TEXT_COLOR,index);
+        putInt(KEY_LYRIC_TEXT_COLOR, index);
     }
 
     public int getGlobalLyricTextColorIndex() {
-        return getInt(KEY_LYRIC_TEXT_COLOR,0);
+        return getInt(KEY_LYRIC_TEXT_COLOR, 0);
     }
 
     /**
      * 本地歌曲排序，默认id排序
+     *
      * @return
      */
     public int getLocalMusicSortKey() {
-        return getInt(KEY_LOCAL_MUSIC_SORT_KEY,0);
+        return getInt(KEY_LOCAL_MUSIC_SORT_KEY, 0);
     }
 
     public void setLocalMusicSortKey(int sortIndex) {
-        putInt(KEY_LOCAL_MUSIC_SORT_KEY,sortIndex);
+        putInt(KEY_LOCAL_MUSIC_SORT_KEY, sortIndex);
 
     }
 }

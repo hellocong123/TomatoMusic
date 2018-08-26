@@ -1,0 +1,24 @@
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/abl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme.AppBarOverlay"
+    app:elevation="0dp">
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+
+    <!--
+    app:popupTheme
+    有时候我们有需求：
+    ActionBar文字是白的，ActionBar Overflow弹出的是白底黑字
+    让ActionBar文字是白的，那么对应的theme肯定是Dark。
+    可是让ActionBar弹出的是白底黑字，那么需要Light主题。
+    这时候popupTheme就派上用场了。
+    -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize" />
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+
+</android.support.design.widget.AppBarLayout>

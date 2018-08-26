@@ -23,15 +23,15 @@ import butterknife.ButterKnife;
  */
 public class GuideFragment extends BaseCommonFragment {
 
-
     @BindView(R.id.iv)
     ImageView iv;
 
     private int imageId;
 
     /**
-     * @param imageId ViewPager数据集里的position
-     * @return Fragment
+     * 生成 ViewPager数据集里的Fragment实例，返回一个ViewPager要显示的Fragment界面
+     * imageId：其实就是图片的类型，也可以说是一张图片，再把这个图片到到Bundle里面，
+     * 显示图片的时候，再获取到这个Bundle里的imageId来显示图片
      *
      */
     public static Fragment newInstance(Integer imageId) {
@@ -62,6 +62,7 @@ public class GuideFragment extends BaseCommonFragment {
     @Override
     protected void initDatas() {
 
+        //获取到创建Fragment时的参数时，如果是一个异常的id，就把引导界面关闭
         imageId = getArguments().getInt(Consts.ID, -1);
 
         if (imageId == -1) {
@@ -70,17 +71,12 @@ public class GuideFragment extends BaseCommonFragment {
             return;
         }
 
-
+        //创建好的Fragment,都要显示一个图片
         ImageUtil.showLocalImage(getMainActivity(), iv, imageId);
     }
 
     @Override
     protected void initListener() {
 
-
     }
-
-
-
-
 }

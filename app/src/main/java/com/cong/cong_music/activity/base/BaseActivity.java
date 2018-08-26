@@ -1,4 +1,4 @@
-package com.cong.cong_music.activity;
+package com.cong.cong_music.activity.base;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

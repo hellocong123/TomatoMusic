@@ -1,9 +1,7 @@
-package com.cong.cong_music.activity;
+package com.cong.cong_music.activity.base;
 
 import com.cong.cong_music.util.OrmUtil;
 import com.cong.cong_music.util.SharedPreferencesUtil;
-
-import butterknife.ButterKnife;
 
 /**
  * @author Cong
@@ -20,9 +18,6 @@ public  class BaseCommonActivity extends BaseActivity{
 
     @Override
     protected void initViews() {
-
-
-
 
         sp = SharedPreferencesUtil.getInstance(getApplicationContext());
         orm = OrmUtil.getInstance(getApplicationContext());

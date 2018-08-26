@@ -13,15 +13,12 @@ import com.cong.cong_music.fragment.GuideFragment;
  */
 public class GuideAdapter extends BaseFragmentPagerAdapter<Integer> {
 
-
     public GuideAdapter(Context context, FragmentManager fm) {
         super(context, fm);
     }
 
     /**
      * 根据position生成fragment
-     *
-     * @return Fragment
      */
     @Override
     public Fragment getItem(int position) {

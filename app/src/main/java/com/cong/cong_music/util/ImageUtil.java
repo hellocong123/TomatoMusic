@@ -32,9 +32,10 @@ public class ImageUtil {
     }
 
     public static void showCircleUri(Activity activity, ImageView view, String name) {
-        showCircle(activity,view,getImageURI(name));
+        showCircle(activity, view, getImageURI(name));
     }
 
+    /** 显示圆形头像：传入一个String */
     public static void showCircle(Activity activity, ImageView view, String name) {
         RequestOptions options = getCommentRequestOptions();
         options.circleCrop();
@@ -47,12 +48,14 @@ public class ImageUtil {
         Glide.with(context).load(name).apply(options).into(view);
     }
 
+    /** 显示圆形头像：传入一个int */
     public static void showCircle(Activity activity, ImageView view, int imageId) {
         RequestOptions options = getCommentRequestOptions();
         options.circleCrop();
         Glide.with(activity).load(imageId).apply(options).into(view);
     }
 
+    /** 显示本地图片：传入一个int */
     public static void showLocalImage(Activity activity, ImageView view, int imageId) {
         RequestOptions options = getCommentRequestOptions();
         Glide.with(activity).load(imageId).apply(options).into(view);
@@ -70,6 +73,7 @@ public class ImageUtil {
 
     /**
      * 聊天界面用
+     *
      * @param context
      * @param view
      * @param imagePath
@@ -84,8 +88,8 @@ public class ImageUtil {
 
     public static RequestOptions getCommentRequestOptions() {
         RequestOptions options = new RequestOptions();
-        options.placeholder(R.drawable.cd_bg);
-        options.error(R.drawable.cd_bg);
+        options.placeholder(R.drawable.cd_bg);//占位符(Placeholders)
+        options.error(R.drawable.cd_bg);//当请求永远失败时显示error Drawable。
         options.centerCrop();
 
         //测试，禁用所有缓存
@@ -94,7 +98,7 @@ public class ImageUtil {
     }
 
     public static String getImageURI(String name) {
-        return String.format(Consts.RESOURCE_PREFIX,name);
+        return String.format(Consts.RESOURCE_PREFIX, name);
     }
 
     //public static void showImageBlur(Activity activity, ImageView view, String name) {
@@ -112,13 +116,13 @@ public class ImageUtil {
 
     public static Bitmap scaleBitmap(Resources resource, int resourceId, int width, int height) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds=true;
+        options.inJustDecodeBounds = true;
 
-        BitmapFactory.decodeResource(resource,resourceId,options);
+        BitmapFactory.decodeResource(resource, resourceId, options);
 
-        options.inSampleSize=computerSampleSize(options,width,height);
+        options.inSampleSize = computerSampleSize(options, width, height);
 
-        options.inJustDecodeBounds=false;
+        options.inJustDecodeBounds = false;
         Bitmap bitmap = BitmapFactory.decodeResource(resource, resourceId, options);
 
         //使用inSampleSize可以一次不能缩放到指定大小，所以可以还需要再次缩放
@@ -138,14 +142,14 @@ public class ImageUtil {
         int outWidth = options.outWidth;
         int outHeight = options.outHeight;
 
-        int inSampleSize=1;
+        int inSampleSize = 1;
 
-        if (outWidth>width||outHeight>height) {
+        if (outWidth > width || outHeight > height) {
             int currentWidth = width / 2;
             int currentHeight = height / 2;
 
-            while ((currentWidth/inSampleSize)>width && (currentHeight/inSampleSize)>height) {
-                inSampleSize*=2;
+            while ((currentWidth / inSampleSize) > width && (currentHeight / inSampleSize) > height) {
+                inSampleSize *= 2;
             }
         }
 

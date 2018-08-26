@@ -1,14 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+    <!--主界面-->
+    <include
+    layout="@layout/app_bar_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+    <!--侧滑界面-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+        <!--显示头像的头布局-->
+        <include layout="@layout/user_info" />
+        <!--
+        ScrollView：只能有一个子View，所以添加一个LinearLayout做为子View，再把要显示的
+        条目放到里面，再把公共的样式都添加到Style里去，这样我们更改的时候只需要去改Style
+        里的属性就可以了
+        -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+                <LinearLayout
+                    android:id="@+id/ll_message_container"
+                    style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="我的消息" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="VIP会员" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="商城" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="在线听歌免流量" />
+                </LinearLayout>
+
+                <!--白色分割线-->
+                <include layout="@layout/divider_large" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_my_friend"
+                    style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="我的好友" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="附近的人" />
+
+                </LinearLayout>
+
+                <include layout="@layout/divider_large" />
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="个性换服" />
+
+                    <TextView
+                        style="@style/ItemTextHint"
+                        android:text="官方红" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="听歌识曲" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="定时停止播放" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="扫一扫" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ItemContainer">
+
+                    <ImageView
+                        style="@style/ItemIcon"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        style="@style/ItemText"
+                        android:text="关于我们" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+        <!--分割线 细-->
+        <include layout="@layout/divider_small" />
+        <!--夜间模式、设置、退出-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/slide_bottom_height"
+            android:layout_marginLeft="@dimen/activity_margin"
+            android:layout_marginRight="@dimen/activity_margin"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+
+            <LinearLayout style="@style/ItemContainerLarge">
+
+                <ImageView
+                    style="@style/ItemIconLarge"
+                    android:src="@drawable/ic_phone" />
+
+                <TextView
+                    style="@style/ItemTextLarge"
+                    android:text="夜间模式" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_settings"
+                style="@style/ItemContainerLarge">
+
+                <ImageView
+                    style="@style/ItemIconLarge"
+                    android:src="@drawable/ic_phone" />
+
+                <TextView
+                    style="@style/ItemTextLarge"
+                    android:text="设置" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/ItemContainerLarge">
+
+                <ImageView
+                    style="@style/ItemIconLarge"
+                    android:src="@drawable/ic_phone" />
+
+                <TextView
+                    style="@style/ItemTextLarge"
+                    android:text="退出" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

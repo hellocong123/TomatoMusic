@@ -14,9 +14,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-//这里定义了两个编译类型，一个是debug,一个release,主要是针对开发环境进行设置
-        //debug里的环境是用来开发的时候使用
-        //release类型是线上时使用的环境
+        /*
+            这里定义了两个编译类型，一个是debug,一个release,主要是针对开发环境进行设置
+            debug里的环境是用来开发的时候使用
+            release类型是线上时使用的环境
+        */
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -28,7 +30,8 @@ android {
             //local
             //buildConfigField 'String', 'ENDPOINT', '"http://192.168.100.106:3000/v1/"'
             buildConfigField 'String', 'ENDPOINT', '"http://10.0.2.2:3000/v1/"'
-            buildConfigField 'String', 'RESOURCE_PREFIX', '"http://dev-courses-misuc.ixuea.com/%s"'
+            buildConfigField 'String', 'RESOURCE_PREFIX', '"http://api-dev-courses-misuc.ixuea.com/v1/"'
+            //buildConfigField 'String', 'RESOURCE_PREFIX', '"http://dev-courses-misuc.ixuea.com/%s"'
 
             //dev
             //buildConfigField 'String', 'ENDPOINT', '"http://api-dev-courses-misuc.ixuea.com/v1/"'
@@ -60,6 +63,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$rootProject.androidSupportVersion"
+    implementation "com.android.support:design:$rootProject.androidSupportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -80,6 +84,34 @@ dependencies {
     //    apache common lang3
     implementation 'org.apache.commons:commons-lang3:3.0'
 
+    //    okhttp
+//    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
+    //    okhttp，chrome sniffer packet//拦截器用到
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+
+    //    retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'//Retrofit到Gson进行转换的库
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'//Retrofit到RxJava进行转换的库
+
+    //    rxjava
+    implementation "io.reactivex.rxjava2:rxjava:2.2.0"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    //    gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //    event bus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //    okhttp,sniffer packet 在手机通知栏显示//拦截器用到，这个抓包软件小于是要 16 SDK版本，而我们使用的是15，所以会出错，但是我们可以
+    //在写代码的时候先改成 16 ，等项目打包上线的时候再改成15的，因为打包的时候可以忽略掉这个抓包工具
+//    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+//    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
+//    ----------------------------------------------------
 
 
 }

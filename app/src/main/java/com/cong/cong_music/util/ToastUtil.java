@@ -1,0 +1,33 @@
+package com.cong.cong_music.util;
+
+import android.content.Context;
+import android.widget.Toast;
+
+/**
+ * @author Cong
+ * @date 2018/8/22
+ * @description
+ */
+public class ToastUtil {
+    /**
+     * 唯一的toast
+     */
+    private static Toast mToast = null;
+
+    public static void showSortToast(Context context, String message) {
+        showToast(context, message, Toast.LENGTH_SHORT);
+    }
+
+    public static void showSortToast(Context context, int resId) {
+        showToast(context, context.getResources().getString(resId), Toast.LENGTH_SHORT);
+    }
+
+    public static void showToast(Context context, String message, int time) {
+        if (mToast != null) {
+        } else {
+            mToast = Toast.makeText(context.getApplicationContext(), message, time);
+        }
+        mToast.setText(message);
+        mToast.show();
+    }
+}

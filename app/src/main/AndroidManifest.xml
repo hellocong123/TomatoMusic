@@ -13,6 +13,7 @@
 
     <!-- <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> -->
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,7 +29,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.GuideActivity" />
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.RegisterLoginActivity" />
+        <activity android:name=".activity.LoginPhoneActivity" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="@string/phone_register" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.UserDetailActivity"></activity>
     </application>
 
 </manifest>

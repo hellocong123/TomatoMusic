@@ -1,25 +1,17 @@
 package com.cong.cong_music.activity;
 
 
-import android.app.Activity;
-import android.os.Handler;
-import android.os.Message;
 import android.view.WindowManager;
 
 import com.cong.cong_music.R;
-import com.cong.cong_music.util.LogUtil;
+import com.cong.cong_music.activity.base.BaseCommonActivity;
 import com.cong.cong_music.util.PackageUtil;
 
-import java.lang.ref.WeakReference;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class SplashActivity extends BaseCommonActivity {
-
-
-//    private MyHandler myHandler;
-
 
     @Override
     protected void initViews() {
@@ -33,7 +25,7 @@ public class SplashActivity extends BaseCommonActivity {
     @Override
     protected void initDatas() {
 
-
+        //定义一个定时器任务，延时3秒跳到主界面
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
@@ -42,15 +34,8 @@ public class SplashActivity extends BaseCommonActivity {
             }
         };
 
-        timer.schedule(task, 3000);
+        timer.schedule(task, 300);
 
-//        myHandler = new  MyHandler(this);
-//        myHandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                myHandler.sendEmptyMessage(-1);
-//            }
-//        },3000);
 
     }
 
@@ -60,74 +45,6 @@ public class SplashActivity extends BaseCommonActivity {
     }
 
 
-    //    private boolean mShowGuide;
-//    private boolean mShowLogin;
-//    private MyHandler mHandler;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_splash);
-//
-//        //去除状态栏
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//
-//
-//
-//
-//        init();
-//    }
-//
-//    private void init() {
-//
-//        mHandler = new MyHandler(this);
-//
-//
-//        mHandler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                mHandler.sendEmptyMessage(0);
-//            }
-//        }, 3000);
-//
-//
-//    }
-//
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//
-//        mHandler.removeMessages(0);
-//    }
-//
-//    public boolean isShowGuide() {
-//        return mShowGuide;
-//    }
-//
-//    public boolean isShowLogin() {
-//        return mShowLogin;
-//    }
-//
-//
-//    class MyHandler extends Handler {
-//        WeakReference<Activity> mWeakReference;
-//        public MyHandler(Activity activity) {
-//            mWeakReference = new WeakReference<>(activity);
-//        }
-//
-//        @Override
-//        public void handleMessage(Message msg) {
-//            final Activity activity = mWeakReference.get();
-//            if (activity != null) {
-//                if (msg.what == -1) {
-//
-//                }
-//            }
-//        }
-//    }
-
     private void next() {
 
         if (isShowGuide()) {
@@ -136,7 +53,7 @@ public class SplashActivity extends BaseCommonActivity {
         } else if (sp.isLogin()) {
             startActivityAfterFinishThis(MainActivity.class);
         } else {
-            startActivityAfterFinishThis(LoginActivity.class);
+            startActivityAfterFinishThis(RegisterLoginActivity.class);
         }
     }
 

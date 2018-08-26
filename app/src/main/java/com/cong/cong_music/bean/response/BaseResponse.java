@@ -1,0 +1,36 @@
+package com.cong.cong_music.bean.response;
+
+/**
+ * @author Cong
+ * @date 2018/8/22
+ * @description
+ */
+public class BaseResponse {
+    /**
+     * 状态码，有状态码，表示有出错
+     */
+    private Integer status;
+
+    /**
+     * 出错的提示信息，有可能没有值
+     */
+    private String message;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public BaseResponse setStatus(Integer status) {
+        this.status = status;
+        return this;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public BaseResponse setMessage(String message) {
+        this.message = message;
+        return this;
+    }
+}

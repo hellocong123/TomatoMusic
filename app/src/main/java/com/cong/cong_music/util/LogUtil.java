@@ -10,6 +10,7 @@ import com.cong.cong_music.BuildConfig;
  * @description
  */
 public class LogUtil {
+    //就是项目没有上线的时候使用的
     public static final boolean isDebug = BuildConfig.DEBUG;
     private static final String TAG = "TAG";
 

@@ -28,7 +28,7 @@ public class RetrofitUtils {
 
     private static final String SONG_ID = "song_id";
     private static RetrofitUtils instance;
-    private static ApiService service;
+    private static ApiService apiService;
 
     RetrofitUtils() {
         // 创建 OKHttpClient
@@ -56,17 +56,20 @@ public class RetrofitUtils {
         builder.addNetworkInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
+                //获取SP实例
                 SharedPreferencesUtil sp = SharedPreferencesUtil.getCurrentInstance();
+
                 Request request = chain.request();
-                //判断用户是否登录了，如果是登录了就给每一个请求都添加一个头，一个是用户id,一个是token
+                //判断用户是否登录了，
                 if (sp.isLogin()) {
+                   //从SP里获取到登录那里保存的 userId/token
                     String userId = sp.getUserId();
                     String token = sp.getToken();
-
+                    //如果使用的是未上线端口，就可以打印
                     if (LogUtil.isDebug) {
                         LogUtil.d("token:" + token + "," + userId);
                     }
-
+                    //如果是登录了就给每一个请求都添加一个头，一个是用户id,一个是token
                     request = chain.request().newBuilder()
                             .addHeader("User", userId)
                             .addHeader("Authorization", token)
@@ -76,9 +79,7 @@ public class RetrofitUtils {
             }
         });
 
-        // 添加公共参数拦截器
-
-
+       //Retrofit实例化，并添加上面的OkHttp到里面
         Retrofit retrofit = new Retrofit.Builder()
                 .client(builder.build())
                 .baseUrl(Consts.RESOURCE_PREFIX)
@@ -86,10 +87,10 @@ public class RetrofitUtils {
                 .addConverterFactory(GsonConverterFactory.create())//添加Gson转换器
                 .build();
 
-        service = retrofit.create(ApiService.class);
+        apiService = retrofit.create(ApiService.class);
     }
 
-    //
+    //单例获取实例
     public static RetrofitUtils getInstance() {
         if (instance == null) {
             instance = new RetrofitUtils();
@@ -97,115 +98,117 @@ public class RetrofitUtils {
         return instance;
     }
 
-    //请求
+    //定义登录方法，在这个方法里面使用service调用ApiService里面的请求方法，就可以返回一个Observable
     public Observable<DetailResponse<Session>> login(User user) {
-        return service.login(user);
+        //调用接口Api里的方法返回一个Observable
+        return apiService.login(user);
     }
 
     public Observable<DetailResponse<Session>> register(User user) {
-        return service.register(user);
+        return apiService.register(user);
     }
 
     public Observable<DetailResponse<Session>> logout(String id) {
-        return service.logout(id);
+        return apiService.logout(id);
     }
 
-//    public Observable<DetailResponse<User>> userDetail(String id) {
-//        return service.userDetail(id);
-//    }
-//
+
+    public Observable<DetailResponse<User>> userDetail(String id) {
+        return apiService.userDetail(id);
+    }
+
 //    public Observable<DetailResponse<User>> userDetailByNickname(String nickname) {
 //        HashMap<String, String> data = new HashMap<>();
 //        data.put(Consts.NICKNAME, nickname);
-//        return service.userDetailByNickname(data);
+//        return apiService.userDetailByNickname(data);
 //    }
 //
 //    public Observable<ListResponse<List>> lists() {
 //        HashMap<String, String> query = new HashMap<>();
-//        return service.lists(query);
+//        return apiService.lists(query);
 //    }
 //
 //    public Observable<ListResponse<SearchHot>> prompt(String content) {
 //        HashMap<String, String> query = new HashMap<>();
 //        query.put(Consts.TITLE,content);
-//        return service.prompt(query);
+//        return apiService.prompt(query);
 //    }
 //
 //    public Observable<ListResponse<SearchHot>> searchHot() {
 //        HashMap<String, String> query = new HashMap<>();
-//        return service.searchHot(query);
+//        return apiService.searchHot(query);
 //    }
 //
 //    public Observable<ListResponse<Song>> searchSong(String title) {
 //        HashMap<String, String> query = new HashMap<>();
 //        query.put(Consts.TITLE,title);
-//        return service.searchSong(query);
+//        return apiService.searchSong(query);
 //    }
 //
 //    public Observable<DetailResponse<List>> createList(List list) {
-//        return service.createList(list);
+//        return apiService.createList(list);
 //    }
 //
 //    public Observable<DetailResponse<Comment>> createComment(Comment comment) {
-//        return service.createComment(comment);
+//        return apiService.createComment(comment);
 //    }
 //
 //    public Observable<DetailResponse<List>> collectionList(String listId) {
-//        return service.collectionList(listId);
+//        return apiService.collectionList(listId);
 //    }
 //
 //    public Observable<DetailResponse<Comment>> like(String commentId) {
-//        return service.like(commentId);
+//        return apiService.like(commentId);
 //    }
 //
 //    public Observable<DetailResponse<User>> follow(String userId) {
-//        return service.follow(userId);
+//        return apiService.follow(userId);
 //    }
 //
 //    public Observable<DetailResponse<User>> unFollow(String userId) {
-//        return service.unFollow(userId);
+//        return apiService.unFollow(userId);
 //    }
 //
 //    public Observable<DetailResponse<List>> cancelCollectionList(String id) {
-//        return service.cancelCollectionList(id);
+//        return apiService.cancelCollectionList(id);
 //    }
 //
 //    public Observable<DetailResponse<Comment>> unlike(String id) {
-//        return service.unlike(id);
+//        return apiService.unlike(id);
 //    }
 //
 //    public Observable<DetailResponse<List>> addSongInSheet(String songId,String listId) {
-//        return service.addSongInSheet(songId,listId);
+//        return apiService.addSongInSheet(songId,listId);
 //    }
 //
 //    public Observable<DetailResponse<List>> deleteSongInSheet(String songId,String sheetId) {
-//        return service.deleteSongInSheet(songId,sheetId);
+//        return apiService.deleteSongInSheet(songId,sheetId);
 //    }
 //
 //    public Observable<ListResponse<List>> listsMyCreate() {
-//        return service.listsMyCreate();
+//        return apiService.listsMyCreate();
 //    }
 //
 //    public Observable<ListResponse<List>> listsMyCollection() {
-//        return service.listsMyCollection();
+//        return apiService.listsMyCollection();
 //    }
 //
 //    public Observable<ListResponse<Song>> songs() {
-//        return service.songs();
+//        return apiService.songs();
 //    }
 //
 //    public Observable<DetailResponse<Song>> songsDetail(String id) {
-//        return service.songsDetail(id);
+//        return apiService.songsDetail(id);
 //    }
 //
 //    public Observable<DetailResponse<List>> listDetail(String id) {
-//        return service.listDetail(id);
+//        return apiService.listDetail(id);
 //    }
 //
 //    //public Observable<ListResponse<Feed>> feedsByTopic(String topic) {
 //    //    HashMap<String, String> data = new HashMap<>();
 //    //    data.put(Consts.TOPIC,topic);
-//    //    return service.feeds(data);
+//    //    return apiService.feeds(data);
 //    //}
 //    //
 //    ///**
@@ -219,15 +222,15 @@ public class RetrofitUtils {
 //            data.put(Consts.USER_ID,userId);
 //        }
 //        data.put(Consts.PAGE,String.valueOf(pageSize));
-//        return service.feeds(data);
+//        return apiService.feeds(data);
 //    }
 //
 //    public Observable<DetailResponse<Feed>> createFeed(FeedParam data) {
-//        return service.createFeed(data);
+//        return apiService.createFeed(data);
 //    }
 //
 //    public Observable<ListResponse<Comment>> comments(Map<String,String> data) {
-//        return service.comments(data);
+//        return apiService.comments(data);
 //    }
 //
 //    public Observable<ListResponse<User>> myFriends(String id,String nickname) {
@@ -237,7 +240,7 @@ public class RetrofitUtils {
 //        if (StringUtils.isNotEmpty(nickname)) {
 //            data.put(Consts.FILTER, nickname);
 //        }
-//        return service.following(id,data);
+//        return apiService.following(id,data);
 //    }
 //
 //    public Observable<ListResponse<User>> myFans(String id,String nickname) {
@@ -247,7 +250,7 @@ public class RetrofitUtils {
 //        if (StringUtils.isNotEmpty(nickname)) {
 //            data.put(Consts.FILTER, nickname);
 //        }
-//        return service.followers(id,data);
+//        return apiService.followers(id,data);
 //    }
 //
 //    public Observable<ListResponse<Topic>> topics(String title) {
@@ -255,36 +258,36 @@ public class RetrofitUtils {
 //        if (StringUtils.isNotEmpty(title)) {
 //            data.put(Consts.FILTER, title);
 //        }
-//        return service.topics(data);
+//        return apiService.topics(data);
 //    }
 //
 //    public Observable<DetailResponse<Topic>> topicDetail(String id) {
 //        HashMap<String, String> data = new HashMap<>();
-//        return service.topicDetail(id,data);
+//        return apiService.topicDetail(id,data);
 //    }
 //
 //    public Observable<DetailResponse<Topic>> topicDetailByTitle(String title) {
 //        HashMap<String, String> data = new HashMap<>();
 //        data.put(Consts.TITLE,title);
-//        return service.topicDetail(String.valueOf(-1),data);
+//        return apiService.topicDetail(String.valueOf(-1),data);
 //    }
 //
 //    public Observable<ListResponse<Video>> videos() {
 //        HashMap<String, String> data = new HashMap<>();
-//        return service.videos(data);
+//        return apiService.videos(data);
 //    }
 //
 //    public Observable<DetailResponse<Video>> videoDetail(String id) {
-//        return service.videoDetail(id);
+//        return apiService.videoDetail(id);
 //    }
 //
 //    public Observable<ListResponse<Advertisement>> advertisements() {
-//        return service.advertisements();
+//        return apiService.advertisements();
 //    }
 
     //public Observable<DetailResponse<Lyric>>  lyricDetailWithBySongId(String id) {
     //    HashMap<String, String> data = new HashMap<>();
     //    data.put(SONG_ID,id);
-    //    return service.lyricDetailWithBySongId(data);
+    //    return apiService.lyricDetailWithBySongId(data);
     //}
 }

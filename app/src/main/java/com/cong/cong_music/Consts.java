@@ -8,7 +8,7 @@ package com.cong.cong_music;
 public class Consts {
     public static final String RESOURCE_PREFIX = BuildConfig.RESOURCE_PREFIX;
     public static final String ENDPOINT = BuildConfig.ENDPOINT;
-
     public static final String ID = "id";
     public static final String STRING = "String";
+    public static final long TIME_OUT = 5; //超时时间
 }
