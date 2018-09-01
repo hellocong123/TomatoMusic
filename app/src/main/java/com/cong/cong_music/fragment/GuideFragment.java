@@ -13,7 +13,6 @@ import com.cong.cong_music.util.ImageUtil;
 import com.cong.cong_music.util.LogUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 /**
@@ -36,7 +35,7 @@ public class GuideFragment extends BaseCommonFragment {
      */
     public static Fragment newInstance(Integer imageId) {
         Bundle args = new Bundle();//创建一个Bundle，让数据以包的形式存储
-        args.putSerializable(Consts.ID, imageId);//把要显示的第几个position，设置为参数放到Fragment
+        args.putSerializable(Consts.USER_ID, imageId);//把要显示的第几个position，设置为参数放到Fragment
         GuideFragment fragment = new GuideFragment();//根据position创建Fragment
         fragment.setArguments(args);//设置参数
         return fragment;
@@ -63,7 +62,7 @@ public class GuideFragment extends BaseCommonFragment {
     protected void initDatas() {
 
         //获取到创建Fragment时的参数时，如果是一个异常的id，就把引导界面关闭
-        imageId = getArguments().getInt(Consts.ID, -1);
+        imageId = getArguments().getInt(Consts.USER_ID, -1);
 
         if (imageId == -1) {
             LogUtil.w("Image id can not be empty!");

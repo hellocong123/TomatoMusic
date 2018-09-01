@@ -3,6 +3,8 @@ package com.cong.cong_music.activity.base;
 import com.cong.cong_music.util.OrmUtil;
 import com.cong.cong_music.util.SharedPreferencesUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * @author Cong
  * @date 2018/8/21
@@ -42,4 +44,11 @@ public  class BaseCommonActivity extends BaseActivity{
 //        }
 //    }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        EventBus.getDefault().unregister(this);
+    }
 }

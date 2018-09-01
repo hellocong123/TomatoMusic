@@ -1,9 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.UserDetailActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <!--AppBarLayout-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <!--头像-->
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/avatar_width"
+                    android:layout_height="@dimen/avatar_width"
+                    tools:src="@drawable/default_avatar" />
+                <!--昵称-->
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    tools:text="昵称" />
+                <!--关注、粉丝-->
+                <TextView
+                    android:id="@+id/tv_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    tools:text="@string/user_detail_count_info" />
+                <!--关注、发送消息-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing">
+
+                    <Button
+                        android:id="@+id/bt_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="关注"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/bt_send_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/button_padding"
+                        android:text="发送消息"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--Toolbar-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/transparent"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+        </RelativeLayout>
+        <!--TabLayout-->
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/tabs"
+            style="@style/TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_layout_height"
+            android:layout_gravity="bottom"
+            android:minHeight="@dimen/tab_layout_height"
+            android:paddingBottom="@dimen/button_padding"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed" />
+
+    </android.support.design.widget.AppBarLayout>
+    <!--ViewPager-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>

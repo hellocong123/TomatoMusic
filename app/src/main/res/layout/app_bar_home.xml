@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:src="@drawable/ic_me_music" />
+                    android:src="@drawable/ic_play" />
 
                 <ImageView
                     android:id="@+id/iv_recommend"
@@ -62,7 +62,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
+    <!--ViewPager-->
     <include layout="@layout/content_home" />
 
 

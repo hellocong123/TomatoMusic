@@ -1,6 +1,7 @@
 package com.cong.cong_music.activity;
 
 
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -12,31 +13,41 @@ import android.widget.TextView;
 import com.cong.cong_music.R;
 import com.cong.cong_music.User;
 import com.cong.cong_music.activity.base.BaseCommonActivity;
+import com.cong.cong_music.adapter.HomeAdapter;
 import com.cong.cong_music.api.RetrofitUtils;
+import com.cong.cong_music.bean.event.LogoutSuccessEvent;
 import com.cong.cong_music.bean.response.DetailResponse;
 import com.cong.cong_music.reactivex.HttpListener;
 import com.cong.cong_music.util.UserUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends BaseCommonActivity implements View.OnClickListener {
+public class MainActivity extends BaseCommonActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
     private ImageView iv_avatar;//头像
     private TextView tv_nickname;//昵称
     private TextView tv_description;//简介
     private DrawerLayout drawer_layout;//抽屉布局
-    private View iv_music;
-    private View iv_recommend;
-    private View iv_video;
+    private ImageView iv_music;
+    private ImageView iv_recommend;
+    private ImageView iv_video;
     private View ll_settings;
     private View ll_my_friend;
     private View ll_message_container;
     private Toolbar toolbar;
+    private HomeAdapter adapter;
+    private ViewPager vp;
 
     @Override
     protected void initViews() {
-        super.initViews();
+
         setContentView(R.layout.activity_main);
 
         drawer_layout = findView(R.id.drawer_layout);
@@ -55,13 +66,8 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
         ll_my_friend = findViewById(R.id.ll_my_friend);
         ll_message_container = findViewById(R.id.ll_message_container);
 
-        iv_avatar.setOnClickListener(this);
-        iv_music.setOnClickListener(this);
-        iv_recommend.setOnClickListener(this);
-        iv_video.setOnClickListener(this);
-        ll_settings.setOnClickListener(this);
-        ll_my_friend.setOnClickListener(this);
-        ll_message_container.setOnClickListener(this);
+        vp = findViewById(R.id.viewPager);
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
@@ -71,6 +77,8 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
 
         drawer_layout.addDrawerListener(toggle);
         toggle.syncState();//同步状态
+
+        super.initViews();
     }
 
 
@@ -78,9 +86,25 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
     protected void initDatas() {
         super.initDatas();
 
+        showHome();
 
 
         showUserInfo();
+    }
+
+    private void showHome() {
+
+
+        adapter = new HomeAdapter(getActivity(), getSupportFragmentManager());
+        vp.setAdapter(adapter);
+
+        ArrayList<Integer> datas = new ArrayList<>();
+        datas.add(0);
+        datas.add(1);
+        datas.add(2);
+        adapter.setDatas(datas);
+
+
     }
 
     private void showUserInfo() {
@@ -106,10 +130,8 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
     }
 
     private void showData(User data) {
-
         //将显示用户信息放到单独的类中，是为了重用，因为在用户详情界面会用到
         UserUtil.showUser(getActivity(), data, iv_avatar, tv_nickname, tv_description);
-
     }
 
 
@@ -121,13 +143,13 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
                 closeDrawer();
                 break;
             case R.id.iv_music:
-//                vp.setCurrentItem(0, true);
+                vp.setCurrentItem(0, true);//设置当前ViewPager页
                 break;
             case R.id.iv_recommend:
-//                vp.setCurrentItem(1, true);
+                vp.setCurrentItem(1, true);//设置当前ViewPager页
                 break;
             case R.id.iv_video:
-//                vp.setCurrentItem(2, true);
+                vp.setCurrentItem(2, true);//设置当前ViewPager页
                 break;
             case R.id.iv_avatar:
                 avatarClick();
@@ -149,17 +171,17 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
     }
 
 
-
     private void avatarClick() {
         closeDrawer();
-        if (sp.isLogin()){
+        if (sp.isLogin()) {
+            //点击头像的时候把用户ID也顺道传递过去
             startActivityExtraId(UserDetailActivity.class, sp.getUserId());
-        }else {
+        } else {
             startActivity(LoginPhoneActivity.class);
         }
 
     }
-
+    //由于多个点击事件都用到这个关闭Drawer的方法，所以把它抽取出来
     private void closeDrawer() {
         drawer_layout.closeDrawer(Gravity.START);
     }
@@ -168,7 +190,66 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
     @Override
     protected void initListener() {
         super.initListener();
+
+        iv_avatar.setOnClickListener(this);
+        iv_music.setOnClickListener(this);
+        iv_recommend.setOnClickListener(this);
+        iv_video.setOnClickListener(this);
+        ll_settings.setOnClickListener(this);
+        ll_my_friend.setOnClickListener(this);
+        ll_message_container.setOnClickListener(this);
+
+        vp.addOnPageChangeListener(this);
+        //默认选中第二个页面，设置监听器在选择就会调用监听器，不会为什么放在initView就不能调用
+        vp.setCurrentItem(1);
+
+        EventBus.getDefault().register(this);
+
+
+    }
+
+    /*-------------------------ViewPager滑动监听三个重写方法-------------------------*/
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    //选中页面的时候
+    @Override
+    public void onPageSelected(int position) {
+        //根据被选中的Pager页设置对应的Toolbar的图片资源
+        if (position == 0) {
+            iv_music.setImageResource(R.drawable.ic_play_selected);//设置选中的ImageView，颜色凸出高亮
+            iv_recommend.setImageResource(R.drawable.ic_music);//设置未选中的图片
+            iv_video.setImageResource(R.drawable.ic_video);
+        } else if (position == 1) {
+            iv_music.setImageResource(R.drawable.ic_play);
+            iv_recommend.setImageResource(R.drawable.ic_music_selected);
+            iv_video.setImageResource(R.drawable.ic_video);
+        } else {
+            iv_music.setImageResource(R.drawable.ic_play);
+            iv_recommend.setImageResource(R.drawable.ic_music);
+            iv_video.setImageResource(R.drawable.ic_video_selected);
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 
 
+    /*-------------------------接收设置Activity点击退出发布的事件，退出App-------------------------*/
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void logoutSuccessEvent(LogoutSuccessEvent event) {
+        showUserInfo();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

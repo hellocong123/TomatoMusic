@@ -73,7 +73,7 @@ public class BaseActivity extends AppCompatActivity {
     //跳传到传进来的Activity，并给这个Activity传入一个参数为ID的标识
     protected void startActivityExtraId(Class<?> clazz, String id) {
         Intent intent = new Intent(getActivity(), clazz);
-        intent.putExtra(Consts.ID, id);
+        intent.putExtra(Consts.USER_ID, id);
         startActivity(intent);
     }
 

@@ -69,6 +69,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    //    palette：调色版
+    implementation "com.android.support:palette-v7:$rootProject.androidSupportVersion"
+
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
@@ -111,6 +114,9 @@ dependencies {
 //    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
 //    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 
+
+    //MagicIndicator：ViewPager指示器
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
 //    ----------------------------------------------------
 
 

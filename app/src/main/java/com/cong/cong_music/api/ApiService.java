@@ -4,12 +4,15 @@ import com.cong.cong_music.User;
 import com.cong.cong_music.bean.Session;
 import com.cong.cong_music.bean.response.DetailResponse;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 /**
  * @author Cong
@@ -33,4 +36,8 @@ public interface ApiService {
     //获取用户详情
     @GET("users/{id}.json")
     Observable<DetailResponse<User>> userDetail(@Path("id") String id);
+
+    //根据nickname,获取用户详情
+    @GET("users/-1.json")
+    Observable<DetailResponse<User>> userDetailByNickname(@QueryMap Map<String, String> data);
 }

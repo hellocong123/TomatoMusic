@@ -9,6 +9,7 @@ import com.cong.cong_music.util.LogUtil;
 import com.cong.cong_music.util.SharedPreferencesUtil;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import okhttp3.Interceptor;
@@ -117,12 +118,12 @@ public class RetrofitUtils {
         return apiService.userDetail(id);
     }
 
-//    public Observable<DetailResponse<User>> userDetailByNickname(String nickname) {
-//        HashMap<String, String> data = new HashMap<>();
-//        data.put(Consts.NICKNAME, nickname);
-//        return apiService.userDetailByNickname(data);
-//    }
-//
+    public Observable<DetailResponse<User>> userDetailByNickname(String nickname) {
+        HashMap<String, String> data = new HashMap<>();
+        data.put(Consts.NICKNAME, nickname);
+        return apiService.userDetailByNickname(data);
+    }
+
 //    public Observable<ListResponse<List>> lists() {
 //        HashMap<String, String> query = new HashMap<>();
 //        return apiService.lists(query);

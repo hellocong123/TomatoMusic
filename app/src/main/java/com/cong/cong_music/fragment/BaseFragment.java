@@ -43,7 +43,7 @@ public abstract class BaseFragment extends Fragment {
     protected void startActivityExtraId(Class<?> clazz, String id) {
         Intent intent = new Intent(getActivity(), clazz);
         if (!TextUtils.isEmpty(id)) {
-            intent.putExtra(Consts.ID, id);
+            intent.putExtra(Consts.USER_ID, id);
         }
         startActivity(intent);
     }

@@ -107,6 +107,7 @@ public class SharedPreferencesUtil {
         put(USER_ID, userId);
     }
 
+    //注销登录，把用户id、token设置为空
     public void logout() {
         put(USER_TOKEN, "");
         put(USER_IM_TOKEN, "");
