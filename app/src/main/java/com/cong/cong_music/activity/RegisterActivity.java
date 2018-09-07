@@ -124,7 +124,7 @@ public class RegisterActivity extends BaseToolBarActivity {
                 .subscribe(new HttpListener<DetailResponse<Session>>(getActivity()) {
                     @Override
                     public void onSucceeded(DetailResponse<Session> data) {
-                        super.onSucceeded(data);
+//                        super.onSucceeded(data);
                         //注册成功，请求登录
                         requestLogin(data.getData());
                     }
@@ -148,7 +148,7 @@ public class RegisterActivity extends BaseToolBarActivity {
                 .subscribe(new HttpListener<DetailResponse<Session>>(getActivity()) {
                     @Override
                     public void onSucceeded(DetailResponse<Session> data) {
-                        super.onSucceeded(data);
+//                        super.onSucceeded(data);
                         //登录成功
                         loginSucceed(data.getData());
 

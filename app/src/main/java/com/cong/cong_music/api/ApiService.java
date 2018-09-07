@@ -1,9 +1,14 @@
 package com.cong.cong_music.api;
 
 import com.cong.cong_music.User;
+import com.cong.cong_music.bean.Advertisement;
+import com.cong.cong_music.bean.ListResponse;
 import com.cong.cong_music.bean.Session;
+import com.cong.cong_music.bean.Song;
+import com.cong.cong_music.bean.SongList;
 import com.cong.cong_music.bean.response.DetailResponse;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -20,6 +25,12 @@ import retrofit2.http.QueryMap;
  * @description
  */
 public interface ApiService {
+
+    //http://api-dev-courses-misuc.ixuea.com/v1/assets/s2.jpg
+    //http://dev-courses-misuc.ixuea.com/%s/assets/s2.jpg
+    //http://api-dev-courses-misuc.ixuea.com/v1/sheets.json
+    //http://api-dev-courses-misuc.ixuea.com/v1/songs.json
+    //http://api-dev-courses-misuc.ixuea.com/v1/advertisements.json
 
     //登录请求方法
     @POST("sessions.json")
@@ -40,4 +51,16 @@ public interface ApiService {
     //根据nickname,获取用户详情
     @GET("users/-1.json")
     Observable<DetailResponse<User>> userDetailByNickname(@QueryMap Map<String, String> data);
+
+    //歌单列表
+    @GET("sheets.json")
+    Observable<ListResponse<SongList>> lists(@QueryMap Map<String, String> data);
+
+    //单曲列表
+    @GET("songs.json")
+    Observable<ListResponse<Song>> songs();
+
+    //广告列表
+    @GET("advertisements.json")
+    Observable<ListResponse<Advertisement>> advertisements();
 }

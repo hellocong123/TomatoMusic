@@ -11,7 +11,7 @@ import com.cong.cong_music.util.ToastUtil;
  * Created by smile on 03/03/2018.
  */
 
-public class HttpListener<T extends BaseResponse> extends AbsObserver<T> {
+public abstract class HttpListener<T extends BaseResponse> extends AbsObserver<T> {
 
     private final BaseActivity activity;
 
@@ -19,9 +19,7 @@ public class HttpListener<T extends BaseResponse> extends AbsObserver<T> {
         this.activity=activity;
     }
 
-    public void onSucceeded(T data) {
-
-    }
+    public abstract void onSucceeded(T data);
 
     //异常统一处理
     public void onFailed(T t, Throwable e) {

@@ -118,7 +118,7 @@ public class MainActivity extends BaseCommonActivity implements View.OnClickList
                     .subscribe(new HttpListener<DetailResponse<User>>(getActivity()) {
                         @Override
                         public void onSucceeded(DetailResponse<User> data) {
-                            super.onSucceeded(data);
+//                            super.onSucceeded(data);
                             showData(data.getData());
                         }
                     });

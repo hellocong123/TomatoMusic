@@ -98,7 +98,10 @@ public class ImageUtil {
     }
 
     public static String getImageURI(String name) {
-        return String.format(Consts.RESOURCE_PREFIX, name);
+//        String str = String.format(Consts.RESOURCE_PREFIX, name);
+        String str = String.format(Consts.ENDPOINT, name);
+        LogUtil.d("图片名字----"+str);
+        return str;
     }
 
     //public static void showImageBlur(Activity activity, ImageView view, String name) {

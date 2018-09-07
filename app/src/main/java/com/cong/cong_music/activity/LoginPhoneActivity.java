@@ -89,7 +89,7 @@ public class LoginPhoneActivity extends BaseCommonActivity {
                 .subscribe(new HttpListener<DetailResponse<Session>>(getActivity()) {
                     @Override
                     public void onSucceeded(DetailResponse<Session> data) {
-                        super.onSucceeded(data);
+//                        super.onSucceeded(data);
 
                         //登录成功
                         loginSucceed(data.getData());

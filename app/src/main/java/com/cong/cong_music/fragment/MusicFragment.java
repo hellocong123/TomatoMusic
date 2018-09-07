@@ -54,8 +54,22 @@ public class MusicFragment extends BaseCommonFragment {
 
     @Override
     protected void initDatas() {
-
+/*
         //这里一定要调用childFragmentManager
+        //getFragmentManager()所得到的是所在fragment 的父容器的管理器，
+        //getChildFragmentManager()所得到的是在fragment  里面子容器的管理器。
+
+        容易出现bug的地方
+        1.Fragment嵌套Fragment要用getChildFragmentManager
+        (1)问题重现
+        1>Fragment放ViewPager，ViewPager里面是fragment。第一次进入没问题，再次进入ViewPager的fragment时里面内容就没了,数据丢失
+        2>Fragment低频率点击切换不会发生问题，过快点击马上崩溃
+        3>错误：Java.lang.IllegalArgumentException：No view found for id for fragment
+        3>调用fragment的replace方法不走onDestroy()、onDestroyView()方法，无法销毁fragment
+        4>在fragment中写倒计时，每次切换后倒计时越来越快的问题
+        getFragmentManager到的是activity对所包含fragment的Manager，
+        而如果是fragment嵌套fragment，那么就需要利用getChildFragmentManager()了。
+*/
         adapter = new MusicUIAdapter(getActivity(), getChildFragmentManager());
         vp.setAdapter(adapter);
 

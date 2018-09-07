@@ -113,7 +113,7 @@ public class UserDetailActivity extends BaseToolBarActivity {
                 .subscribe(new HttpListener<DetailResponse<User>>(getActivity()) {
                     @Override
                     public void onSucceeded(DetailResponse<User> data) {
-                        super.onSucceeded(data);
+//                        super.onSucceeded(data);
                         showUserData(data.getData());
                     }
                 });
@@ -127,7 +127,7 @@ public class UserDetailActivity extends BaseToolBarActivity {
                 .subscribe(new HttpListener<DetailResponse<User>>(getActivity()) {
                     @Override
                     public void onSucceeded(DetailResponse<User> data) {
-                        super.onSucceeded(data);
+//                        super.onSucceeded(data);
                         showUserData(data.getData());
                     }
                 });

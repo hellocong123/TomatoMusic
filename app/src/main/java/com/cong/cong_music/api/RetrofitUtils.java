@@ -2,15 +2,22 @@ package com.cong.cong_music.api;
 
 import com.cong.cong_music.Consts;
 import com.cong.cong_music.User;
+import com.cong.cong_music.bean.Advertisement;
+import com.cong.cong_music.bean.ListResponse;
 import com.cong.cong_music.bean.Session;
+import com.cong.cong_music.bean.Song;
+import com.cong.cong_music.bean.SongList;
 import com.cong.cong_music.bean.response.DetailResponse;
 import com.cong.cong_music.interceptor.HttpLoggingInterceptor;
 import com.cong.cong_music.util.LogUtil;
 import com.cong.cong_music.util.SharedPreferencesUtil;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -63,7 +70,7 @@ public class RetrofitUtils {
                 Request request = chain.request();
                 //判断用户是否登录了，
                 if (sp.isLogin()) {
-                   //从SP里获取到登录那里保存的 userId/token
+                    //从SP里获取到登录那里保存的 userId/token
                     String userId = sp.getUserId();
                     String token = sp.getToken();
                     //如果使用的是未上线端口，就可以打印
@@ -80,7 +87,7 @@ public class RetrofitUtils {
             }
         });
 
-       //Retrofit实例化，并添加上面的OkHttp到里面
+        //Retrofit实例化，并添加上面的OkHttp到里面
         Retrofit retrofit = new Retrofit.Builder()
                 .client(builder.build())
                 .baseUrl(Consts.RESOURCE_PREFIX)
@@ -105,30 +112,44 @@ public class RetrofitUtils {
         return apiService.login(user);
     }
 
+    //请求注册
     public Observable<DetailResponse<Session>> register(User user) {
         return apiService.register(user);
     }
 
+    //请求登录
     public Observable<DetailResponse<Session>> logout(String id) {
         return apiService.logout(id);
     }
 
-
+    //通过用户ID获取用户详情数据
     public Observable<DetailResponse<User>> userDetail(String id) {
         return apiService.userDetail(id);
     }
 
+    //通过用户昵称获取用户详情数据
     public Observable<DetailResponse<User>> userDetailByNickname(String nickname) {
         HashMap<String, String> data = new HashMap<>();
         data.put(Consts.NICKNAME, nickname);
         return apiService.userDetailByNickname(data);
     }
 
-//    public Observable<ListResponse<List>> lists() {
-//        HashMap<String, String> query = new HashMap<>();
-//        return apiService.lists(query);
-//    }
-//
+    //请求首页歌单列表接口
+    public Observable<ListResponse<SongList>> lists() {
+        HashMap<String, String> query = new HashMap<>();
+        return apiService.lists(query);
+    }
+
+    //请求首页歌曲列表接口
+    public Observable<ListResponse<Song>> songs() {
+        return apiService.songs();
+    }
+
+    //请求首页广告接口
+    public Observable<ListResponse<Advertisement>> advertisements() {
+        return apiService.advertisements();
+    }
+
 //    public Observable<ListResponse<SearchHot>> prompt(String content) {
 //        HashMap<String, String> query = new HashMap<>();
 //        query.put(Consts.TITLE,content);
@@ -194,10 +215,7 @@ public class RetrofitUtils {
 //        return apiService.listsMyCollection();
 //    }
 //
-//    public Observable<ListResponse<Song>> songs() {
-//        return apiService.songs();
-//    }
-//
+
 //    public Observable<DetailResponse<Song>> songsDetail(String id) {
 //        return apiService.songsDetail(id);
 //    }
@@ -282,9 +300,7 @@ public class RetrofitUtils {
 //        return apiService.videoDetail(id);
 //    }
 //
-//    public Observable<ListResponse<Advertisement>> advertisements() {
-//        return apiService.advertisements();
-//    }
+
 
     //public Observable<DetailResponse<Lyric>>  lyricDetailWithBySongId(String id) {
     //    HashMap<String, String> data = new HashMap<>();
