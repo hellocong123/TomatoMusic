@@ -76,8 +76,7 @@
     </style>
 
     <!--暂时一样，所以直接继承-->
-    <style name="ItemIconLarge" parent="ItemIcon">
-    </style>
+    <style name="ItemIconLarge" parent="ItemIcon"></style>
 
     <style name="ItemTextLarge">
         <item name="android:layout_marginLeft">@dimen/item_icon_padding</item>
@@ -89,6 +88,7 @@
 
     <!--toolbar样式，在Toolbar布局里用到，但不知道是什么效果-->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--tabLayout样式-->
@@ -97,6 +97,23 @@
         <!--<item name="tabTextColor">@color/text_white</item>-->
         <!--<item name="tabMode">fixed</item>-->
         <!--<item name="tabIndicatorColor">@color/white</item>-->
+    </style>
+
+    <!--widget里的格式1-->
+    <style name="ItemEntryContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_music_entry_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/button_padding</item>
+        <item name="android:paddingRight">@dimen/button_padding</item>
+    </style>
+
+    <!--widget里的格式2-->
+    <style name="ItemEntryTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:layout_marginLeft">@dimen/item_icon_padding</item>
     </style>
 
 </resources>

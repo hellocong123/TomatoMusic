@@ -18,6 +18,15 @@ public class Song {
     private int id;
     private String title;
     private String uri;
+    private Long comments_count;
+
+    public Long getComments_count() {
+        return comments_count;
+    }
+
+    public void setComments_count(Long comments_count) {
+        this.comments_count = comments_count;
+    }
 
     public AlbumBean getAlbum() {
         return album;

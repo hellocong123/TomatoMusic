@@ -87,6 +87,21 @@ public class RecommendAdapter extends BaseRecyclerViewAdapter<Object, RecommendA
         return TYPE_ADVERTISEMENT;
     }
 
+
+    @Override
+    public int setSpanSizeLookup(int position) {
+        int viewType = getItemViewType(position);
+        switch (viewType) {
+            case RecommendAdapter.TYPE_TITLE:
+                return 3;
+            case RecommendAdapter.TYPE_LIST:
+                return 1;
+            case RecommendAdapter.TYPE_SONG:
+                return 3;
+        }
+        return 3;
+    }
+
     /**
      * 标题
      */
@@ -150,12 +165,6 @@ public class RecommendAdapter extends BaseRecyclerViewAdapter<Object, RecommendA
         @Override
         public void bindData(Object data) {
             Song d = (Song) data;
-            String str=null;
-
-            str=String.format("Hi,%s", "飞龙");          // 格式化字符串
-
-            LogUtil.d("格式化"+str);
-
             ImageUtil.show((Activity) context, iv_icon, d.getBanner());
             tv_title.setText(d.getTitle());
             tv_nickname.setText(d.getArtist().getNickname());
@@ -185,4 +194,9 @@ public class RecommendAdapter extends BaseRecyclerViewAdapter<Object, RecommendA
             tv_title.setText(d.getTitle());
         }
     }
+
+
+
+
+
 }

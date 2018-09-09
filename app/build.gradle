@@ -112,11 +112,16 @@ dependencies {
     //    cardview
     implementation 'com.android.support:cardview-v7:21.0.+'
 
+    //Recycler View header
+    implementation 'com.github.jdsjlzx:LRecyclerView:1.5.0'
+
+    //轮播图：banner
+    implementation 'com.youth.banner:banner:1.4.10'
+
     //    okhttp,sniffer packet 在手机通知栏显示//拦截器用到，这个抓包软件小于是要 16 SDK版本，而我们使用的是15，所以会出错，但是我们可以
     //在写代码的时候先改成 16 ，等项目打包上线的时候再改成15的，因为打包的时候可以忽略掉这个抓包工具
 //    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
 //    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
-
 
     //MagicIndicator：ViewPager指示器
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'

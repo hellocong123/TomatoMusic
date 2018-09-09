@@ -36,6 +36,7 @@ public class SquareLinearLayout extends LinearLayout {
 
         // 获取测量后的宽度
         int width = getMeasuredWidth();
+
         //创建一个测量规格，设置高度和宽度一样
         heightMeasureSpec = widthMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);

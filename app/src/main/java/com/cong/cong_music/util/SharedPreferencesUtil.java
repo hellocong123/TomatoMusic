@@ -12,7 +12,7 @@ public class SharedPreferencesUtil {
     public static final String TAG = "SharedPreferencesUtil";
     private static final String USER_TOKEN = "USER_TOKEN";
     private static final String USER_IM_TOKEN = "USER_IM_TOKEN";
-    private static final String USER_ID = "USER_ID";
+    private static final String USER_ID = "KEY_ID";
     private static final String FIRST = "FIRST";
     private static final String KEY_LYRIC_LOCK = "KEY_LYRIC_LOCK";
     private static final String KEY_LYRIC_Y = "KEY_LYRIC_Y";

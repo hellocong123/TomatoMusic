@@ -70,7 +70,7 @@ public abstract class BaseRecyclerViewAdapter<D, VH extends BaseRecyclerViewAdap
     }
 
     //给Adapter设置数据
-    public void setData(ArrayList<D> data) {
+    public void setData(List<D> data) {
         this.datas.clear();
         this.datas.addAll(data);
         //notifyItemRangeChanged(0, data.size());
@@ -87,7 +87,17 @@ public abstract class BaseRecyclerViewAdapter<D, VH extends BaseRecyclerViewAdap
         boolean onItemLongClick(BaseRecyclerViewAdapter.ViewHolder holder, int position);
     }
 
-    public abstract class ViewHolder extends RecyclerView.ViewHolder {
+    public int setSpanSizeLookup(int position) {
+        return 1;
+    }
+
+
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.onItemClickListener=listener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(View itemView) {
             super(itemView);

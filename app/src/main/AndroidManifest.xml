@@ -34,9 +34,10 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:label="@string/phone_register" />
-        <activity android:name=".activity.SettingsActivity"
-            />
-        <activity android:name=".activity.UserDetailActivity"/>
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.UserDetailActivity" />
+        <activity android:name=".activity.BaseWebViewActivity" />
+        <activity android:name=".activity.ListDetailActivity"></activity>
     </application>
 
 </manifest>

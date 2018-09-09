@@ -150,6 +150,10 @@ public class RetrofitUtils {
         return apiService.advertisements();
     }
 
+    //请求歌单列表接口
+    public Observable<DetailResponse<SongList>> listDetail(String id) {
+        return apiService.listDetail(id);
+    }
 //    public Observable<ListResponse<SearchHot>> prompt(String content) {
 //        HashMap<String, String> query = new HashMap<>();
 //        query.put(Consts.TITLE,content);
@@ -220,9 +224,7 @@ public class RetrofitUtils {
 //        return apiService.songsDetail(id);
 //    }
 //
-//    public Observable<DetailResponse<List>> listDetail(String id) {
-//        return apiService.listDetail(id);
-//    }
+
 //
 //    //public Observable<ListResponse<Feed>> feedsByTopic(String topic) {
 //    //    HashMap<String, String> data = new HashMap<>();
@@ -238,7 +240,7 @@ public class RetrofitUtils {
 //    public Observable<ListResponse<Feed>> feeds(String userId, int pageSize) {
 //        HashMap<String, String> data = new HashMap<>();
 //        if (StringUtils.isNotBlank(userId)) {
-//            data.put(Consts.USER_ID,userId);
+//            data.put(Consts.KEY_ID,userId);
 //        }
 //        data.put(Consts.PAGE,String.valueOf(pageSize));
 //        return apiService.feeds(data);

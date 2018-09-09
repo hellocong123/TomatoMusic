@@ -31,6 +31,7 @@ public interface ApiService {
     //http://api-dev-courses-misuc.ixuea.com/v1/sheets.json
     //http://api-dev-courses-misuc.ixuea.com/v1/songs.json
     //http://api-dev-courses-misuc.ixuea.com/v1/advertisements.json
+    //http://api-dev-courses-misuc.ixuea.com/v1/sheets/2.json
 
     //登录请求方法
     @POST("sessions.json")
@@ -63,4 +64,8 @@ public interface ApiService {
     //广告列表
     @GET("advertisements.json")
     Observable<ListResponse<Advertisement>> advertisements();
+
+    //获取歌单详情
+    @GET("sheets/{id}.json")
+    Observable<DetailResponse<SongList>> listDetail(@Path("id") String id);
 }

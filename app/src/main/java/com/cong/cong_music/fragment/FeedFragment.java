@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.cong.cong_music.Consts;
 import com.cong.cong_music.R;
-import com.cong.cong_music.util.StringUtil;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -34,7 +33,7 @@ public class FeedFragment extends BaseCommonFragment {
         Bundle args = new Bundle();
 
         if (StringUtils.isNotEmpty(userId)) {
-            args.putString(Consts.USER_ID, userId);
+            args.putString(Consts.KEY_ID, userId);
         }
 
         FeedFragment fragment = new FeedFragment();

@@ -92,7 +92,7 @@ public class UserDetailActivity extends BaseToolBarActivity {
         //获取用户昵称
         nickname = getIntent().getStringExtra(Consts.NICKNAME);
         //获取用户ID
-        id = getIntent().getStringExtra(Consts.USER_ID);
+        id = getIntent().getStringExtra(Consts.KEY_ID);
 
         if (StringUtils.isNotEmpty(id)) {
             //如果Id，不为空，就通过Id查询
