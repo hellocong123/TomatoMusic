@@ -12,7 +12,7 @@ import com.cong.cong_music.util.LogUtil;
  * @date 2018/8/23
  * @description
  */
-public  class BaseToolBarActivity extends BaseCommonActivity {
+public abstract class BaseToolBarActivity extends BaseCommonActivity {
 
     public Toolbar toolbar;
 
@@ -20,15 +20,15 @@ public  class BaseToolBarActivity extends BaseCommonActivity {
     protected void initViews() {
         super.initViews();
 
+
+
         toolbar = findViewById(R.id.toolbar);
         initToolbar();
         setSupportActionBar(toolbar);
-
+        enableBackMenu();
     }
 
-    protected  void initToolbar(){
-
-    }
+    protected abstract void initToolbar();
 
 
 //    @Override

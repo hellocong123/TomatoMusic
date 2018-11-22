@@ -1,5 +1,6 @@
 package com.cong.cong_music.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,7 +43,7 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class ListDetailActivity extends BaseToolBarActivity {
+public class ListDetailActivity extends BaseToolBarActivity implements View.OnClickListener {
 
 
     private ImageView iv_icon;//歌单封面图片
@@ -67,7 +68,7 @@ public class ListDetailActivity extends BaseToolBarActivity {
         setContentView(R.layout.activity_list_detail);
         rv = findView(R.id.rv);
         super.initViews();
-        enableBackMenu();
+//        enableBackMenu();
 
     }
 
@@ -108,6 +109,9 @@ public class ListDetailActivity extends BaseToolBarActivity {
         tv_comment_count = top.findViewById(R.id.tv_comment_count);
         tv_play_all = top.findViewById(R.id.tv_play_all);
         tv_count = top.findViewById(R.id.tv_count);
+
+
+
         return top;
     }
 
@@ -183,9 +187,27 @@ public class ListDetailActivity extends BaseToolBarActivity {
 
 
     @Override
+    protected void initListener() {
+        ll_comment_container.setOnClickListener(this);  //评论点击事件监听
+
+    }
+
+    @Override
     protected void initToolbar() {
         toolbar.setTitle("歌单");
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id. ll_comment_container:                //跳转到评论列表界面
+                Intent intent = new Intent(this, CommentListActivity.class);
+                intent.putExtra(Consts.LIST_ID,id);
+                intent.putExtra(Consts.STYLE,Consts.STYLE_LIST);
+                startActivity(intent);
+                break;
+        }
+    }
 }

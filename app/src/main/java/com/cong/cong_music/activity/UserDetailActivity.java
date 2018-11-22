@@ -20,7 +20,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.cong.cong_music.Consts;
 import com.cong.cong_music.R;
-import com.cong.cong_music.User;
+import com.cong.cong_music.bean.User;
 import com.cong.cong_music.activity.base.BaseToolBarActivity;
 import com.cong.cong_music.adapter.MyCommonNavigatorAdapter;
 import com.cong.cong_music.adapter.UserDetailAdapter;
@@ -74,7 +74,7 @@ public class UserDetailActivity extends BaseToolBarActivity {
     @Override
     protected void initDatas() {
 
-        enableBackMenu();
+//        enableBackMenu();
 
         //加载用户数据
         loadUserData();

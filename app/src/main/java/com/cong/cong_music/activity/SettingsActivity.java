@@ -34,7 +34,7 @@ public class SettingsActivity extends BaseToolBarActivity implements View.OnClic
 
     @Override
     protected void initDatas() {
-        enableBackMenu();
+//        enableBackMenu();
 
     }
 

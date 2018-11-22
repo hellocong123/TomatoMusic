@@ -69,11 +69,12 @@ public class SharedPreferencesUtil {
         mEditor.commit();
     }
 
-    //    自用方法
+    //保存用户Token
     public void setToken(String token) {
         put(USER_TOKEN, token);
     }
 
+    //获取用户Token
     public String getToken() {
         return get(USER_TOKEN);
     }
@@ -86,7 +87,7 @@ public class SharedPreferencesUtil {
         put(USER_IM_TOKEN, token);
     }
 
-
+    //是否登录
     public boolean isLogin() {
         return !TextUtils.isEmpty(get(USER_TOKEN));
     }

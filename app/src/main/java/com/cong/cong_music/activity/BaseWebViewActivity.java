@@ -74,7 +74,7 @@ public class BaseWebViewActivity extends BaseToolBarActivity {
             finish();
         }
 
-        enableBackMenu();
+//        enableBackMenu();
     }
 
     @Override

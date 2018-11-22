@@ -4,7 +4,7 @@ import android.support.design.widget.AppBarLayout;
 import android.widget.EditText;
 
 import com.cong.cong_music.R;
-import com.cong.cong_music.User;
+import com.cong.cong_music.bean.User;
 import com.cong.cong_music.activity.base.BaseToolBarActivity;
 import com.cong.cong_music.api.RetrofitUtils;
 import com.cong.cong_music.bean.Session;
@@ -49,8 +49,13 @@ public class RegisterActivity extends BaseToolBarActivity {
     }
 
     @Override
+    protected void initToolbar() {
+
+    }
+
+    @Override
     protected void initDatas() {
-        enableBackMenu();
+//        enableBackMenu();
     }
 
     @Override

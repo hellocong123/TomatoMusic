@@ -104,4 +104,6 @@
     <string name="user_detail_count_info">关注 %1$d | 粉丝 %2$d</string>
     <string name="message_count_99">99+</string>
     <string name="list_detail">歌单详情</string>
+
+    <string name="signature">我总是太贪恋美好的事物，吃到好吃的东西总想多吃一点，遇到喜欢的人总想爱的久一点。</string>
 </resources>

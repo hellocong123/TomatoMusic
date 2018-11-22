@@ -37,7 +37,25 @@
         <activity android:name=".activity.SettingsActivity" />
         <activity android:name=".activity.UserDetailActivity" />
         <activity android:name=".activity.BaseWebViewActivity" />
-        <activity android:name=".activity.ListDetailActivity"></activity>
+        <activity android:name=".activity.ListDetailActivity" />
+        <activity android:name=".activity.MusicPlayerActivity" />
+
+        <service
+            android:name=".service.MusicPlayerService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity android:name=".activity.CommentListActivity" />
+        <activity android:name=".demo.Main2Activity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".activity.VideoDetailActivity"></activity>
     </application>
 
 </manifest>

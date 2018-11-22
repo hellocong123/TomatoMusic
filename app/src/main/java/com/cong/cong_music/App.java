@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Process;
+import android.support.text.emoji.EmojiCompat;
+import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
 import android.util.Log;
 
 import com.cong.cong_music.util.PackageUtil;
@@ -32,9 +34,9 @@ public class App extends Application{
 
         this.context = getApplicationContext();
 
-//        //初始化emoji
-//        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
-//        EmojiCompat.init(config);
+        //初始化emoji 表情
+        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+        EmojiCompat.init(config);
 //
 //        //Share SDK
 //        MobSDK.init(this);

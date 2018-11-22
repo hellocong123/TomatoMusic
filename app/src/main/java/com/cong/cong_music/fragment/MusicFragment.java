@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.cong.cong_music.R;
 import com.cong.cong_music.adapter.MusicUIAdapter;
+import com.cong.cong_music.fragment.base.BaseCommonFragment;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -24,8 +25,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorT
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @author Cong
@@ -79,7 +78,7 @@ public class MusicFragment extends BaseCommonFragment {
         datas.add(2);
         adapter.setDatas(datas);
 
-        //将TabLayout和ViewPager关联起来
+        //将MagicIndicator(TabLayout)和ViewPager关联起来
         CommonNavigator commonNavigator = new CommonNavigator(getMainActivity());
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
 
@@ -114,6 +113,7 @@ public class MusicFragment extends BaseCommonFragment {
         commonNavigator.setAdjustMode(true);
         tabs.setNavigator(commonNavigator);
 
+        //把tab和ViewPager绑定在一起
         ViewPagerHelper.bind(tabs, vp);
 
     }

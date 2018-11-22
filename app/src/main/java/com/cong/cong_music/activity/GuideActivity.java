@@ -60,6 +60,7 @@ public class GuideActivity extends BaseCommonActivity {
 
     }
 
+    //跳转 注册登录界面
     @OnClick(R.id.bt_login_or_register)
     public void bt_login_or_register() {
         setFirst();
@@ -67,6 +68,7 @@ public class GuideActivity extends BaseCommonActivity {
         startActivityAfterFinishThis(RegisterLoginActivity.class);
     }
 
+    //以游客的身份进入
     public void bt_enter(View view) {
         setFirst();
         //点击进入按钮，跳转到Main主界面

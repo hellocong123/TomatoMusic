@@ -5,12 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.cong.cong_music.activity.base.BaseActivity;
-import com.cong.cong_music.fragment.AboutUserFragment;
-import com.cong.cong_music.fragment.FeedFragment;
-import com.cong.cong_music.fragment.UserDetailMusicFragment;
-
-import java.util.ArrayList;
+import com.cong.cong_music.fragment.user.AboutUserFragment;
+import com.cong.cong_music.fragment.recommend.FeedFragment;
+import com.cong.cong_music.fragment.user.UserDetailMusicFragment;
 
 /**
  * @author Cong

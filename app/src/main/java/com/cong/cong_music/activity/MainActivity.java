@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cong.cong_music.R;
-import com.cong.cong_music.User;
+import com.cong.cong_music.bean.User;
 import com.cong.cong_music.activity.base.BaseCommonActivity;
 import com.cong.cong_music.adapter.HomeAdapter;
 import com.cong.cong_music.api.RetrofitUtils;

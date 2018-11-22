@@ -1,7 +1,5 @@
 package com.cong.cong_music.bean;
 
-import com.cong.cong_music.User;
-
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -169,5 +167,24 @@ public class SongList {
 
     public boolean isCollection() {
         return StringUtils.isNotBlank(collection_id);
+    }
+
+
+    @Override
+    public String toString() {
+        return "SongList{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", banner='" + banner + '\'' +
+                ", clicks_count=" + clicks_count +
+                ", comments_count=" + comments_count +
+                ", collections_count=" + collections_count +
+                ", songs_count=" + songs_count +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", created_at='" + created_at + '\'' +
+                ", songs=" + songs +
+                ", collection_id='" + collection_id + '\'' +
+                '}';
     }
 }

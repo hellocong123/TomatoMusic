@@ -3,14 +3,11 @@ package com.cong.cong_music.adapter;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-import com.cong.cong_music.fragment.AboutUserFragment;
-import com.cong.cong_music.fragment.FMFragment;
-import com.cong.cong_music.fragment.FeedFragment;
-import com.cong.cong_music.fragment.RecommendFragment;
-import com.cong.cong_music.fragment.UserDetailMusicFragment;
+import com.cong.cong_music.fragment.recommend.FMFragment;
+import com.cong.cong_music.fragment.recommend.FeedFragment;
+import com.cong.cong_music.fragment.recommend.RecommendFragment;
 
 /**
  * @author Cong

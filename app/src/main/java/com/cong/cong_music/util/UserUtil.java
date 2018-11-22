@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cong.cong_music.R;
-import com.cong.cong_music.User;
+import com.cong.cong_music.bean.User;
 
 /**
  * @author Cong

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.cong.cong_music.Consts;
 import com.cong.cong_music.R;
+import com.cong.cong_music.fragment.base.BaseCommonFragment;
 import com.cong.cong_music.util.ImageUtil;
 import com.cong.cong_music.util.LogUtil;
 

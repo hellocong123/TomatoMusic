@@ -16,10 +16,17 @@ public abstract class HttpListener<T extends BaseResponse> extends AbsObserver<T
     private final BaseActivity activity;
 
     public HttpListener(BaseActivity activity) {
-        this.activity=activity;
+        this.activity = activity;
     }
 
     public abstract void onSucceeded(T data);
+
+
+    @Override
+    public void onComplete() {
+
+
+    }
 
     //异常统一处理
     public void onFailed(T t, Throwable e) {
@@ -34,14 +41,14 @@ public abstract class HttpListener<T extends BaseResponse> extends AbsObserver<T
             if (t != null && !TextUtils.isEmpty(t.getMessage())) {
                 ToastUtil.showSortToast(activity, t.getMessage());
             } else {
-                ToastUtil.showSortToast(activity, "未知错误,请稍后再试!");
+                ToastUtil.showSortToast(activity, "网络连接错误,请稍后再试!");
             }
 
         }
     }
 
     public boolean isSuccess(T t) {
-        return t.getStatus()==null;
+        return t.getStatus() == null;
     }
 
     //复写父类下一步的方法
@@ -52,7 +59,7 @@ public abstract class HttpListener<T extends BaseResponse> extends AbsObserver<T
             onSucceeded(t);
         } else {
             //请求网络失败或请求出现异常的时候
-            onFailed(t,null);
+            onFailed(t, null);
         }
     }
 
@@ -60,7 +67,7 @@ public abstract class HttpListener<T extends BaseResponse> extends AbsObserver<T
     @Override
     public void onError(Throwable e) {
         super.onError(e);
-        onFailed(null,e);
+        onFailed(null, e);
     }
 
 }

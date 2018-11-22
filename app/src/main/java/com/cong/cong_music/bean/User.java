@@ -1,4 +1,4 @@
-package com.cong.cong_music;
+package com.cong.cong_music.bean;
 
 import android.text.TextUtils;
 
@@ -8,75 +8,24 @@ import android.text.TextUtils;
  * @description
  */
 public class User {
-    /**
-     * 手机号
-     */
-    public static final int TYPE_PHONE = 0;
 
-    /**
-     * QQ登陆
-     */
-    public static final int TYPE_QQ = 10;
+    //用户登录类型相关
+    private int type;                               //登录类型：QQ，微博等
+    public static final int TYPE_PHONE = 0;         //手机号
+    public static final int TYPE_QQ = 10;           //登录类型：QQ登陆
+    public static final int TYPE_WEIBO = 20;        //登录类型：微博登陆
 
-    /**
-     * 微博登陆
-     */
-    public static final int TYPE_WEIBO = 20;
-
-    /**
-     * 用户Id
-     */
-    private String id;
-
-    /**
-     * 用户昵称
-     */
-    private String nickname;
-
-    /**
-     * 用户头像
-     */
-    private String avatar;
-
-    /**
-     * 用户描述
-     */
-    private String description;
-
-    /**
-     * 第三方OpenId
-     */
-    private String open_id;
-
-    /**
-     * 用户的手机号
-     */
-    private String phone;
-
-    /**
-     * 用户的密码,登陆，注册向服务端传递
-     */
-    private String password;
-
-    /**
-     * 类型，只有登陆，注册向服务端传递，表示是什么样的登陆，或者
-     */
-    private int type;
-
-    /**
-     * 关注我的人
-     */
-    private int followers_count;
-
-    /**
-     * 我关注的人
-     */
-    private int followings_count;
-
-    /**
-     * 是否关注，1：关注
-     */
-    private int following;
+    //用户信息相关
+    private String id;                              //用户Id
+    private String nickname;                        //用户昵称
+    private String avatar;                          //用户头像
+    private String description;                     //用户描述
+    private String open_id;                         //第三方OpenId
+    private String phone;                           //用户的手机号
+    private String password;                        //用户的密码
+    private int followers_count;                    //关注我的人
+    private int followings_count;                   //我关注的人
+    private int following;                          //是否关注，1：关注
 
     public int getFollowing() {
         return following;

@@ -10,7 +10,7 @@ import org.greenrobot.eventbus.EventBus;
  * @date 2018/8/21
  * @description
  */
-public  class BaseCommonActivity extends BaseActivity{
+public class BaseCommonActivity extends BaseActivity {
 
 
     protected SharedPreferencesUtil sp;

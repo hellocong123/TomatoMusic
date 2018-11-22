@@ -1,19 +1,23 @@
 package com.cong.cong_music.api;
 
-import com.cong.cong_music.User;
+import com.cong.cong_music.bean.User;
 import com.cong.cong_music.bean.Advertisement;
+import com.cong.cong_music.bean.Comment;
 import com.cong.cong_music.bean.ListResponse;
 import com.cong.cong_music.bean.Session;
 import com.cong.cong_music.bean.Song;
 import com.cong.cong_music.bean.SongList;
+import com.cong.cong_music.bean.Video;
 import com.cong.cong_music.bean.response.DetailResponse;
 
-import java.util.List;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -68,4 +72,27 @@ public interface ApiService {
     //获取歌单详情
     @GET("sheets/{id}.json")
     Observable<DetailResponse<SongList>> listDetail(@Path("id") String id);
+
+    //评论列表
+    @GET("comments.json") //http://api-dev-courses-misuc.ixuea.com/v1/comments.json?order=10&&sheet_id=1
+    Observable<ListResponse<Comment>> comments(@QueryMap Map<String, String> data);
+
+    //创建评论
+    @POST("comments.json")
+    Observable<DetailResponse<Comment>> createComment(@Body Comment data);
+
+
+    //取消评论点赞
+    @DELETE("likes/{id}.json")
+    Observable<DetailResponse<Comment>> unlike(@Path("id") String id);
+
+    //评论点赞
+    @FormUrlEncoded
+    @POST("likes.json")
+    Observable<DetailResponse<Comment>> like(@Field("comment_id") String comment_id);
+
+    //视频列表
+    @GET("videos.json")
+    Observable<ListResponse<Video>> videos(@QueryMap Map<String, String> data);
+
 }

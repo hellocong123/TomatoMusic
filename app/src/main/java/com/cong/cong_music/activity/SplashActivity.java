@@ -47,10 +47,9 @@ public class SplashActivity extends BaseCommonActivity {
 
     private void next() {
 
-        if (isShowGuide()) {
-            //跳传到引导界面，并毕当前Activity
+        if (isShowGuide()) {                                                //根据版本号判断是否登录
             startActivityAfterFinishThis(GuideActivity.class);
-        } else if (sp.isLogin()) {
+        } else if (sp.isLogin()) {                                          //根据保存的Token是否为空判断是否已经登录
             startActivityAfterFinishThis(MainActivity.class);
         } else {
             startActivityAfterFinishThis(RegisterLoginActivity.class);

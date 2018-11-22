@@ -13,14 +13,15 @@
         android:id="@+id/iv_avatar"
         android:layout_width="@dimen/avatar_width"
         android:layout_height="@dimen/avatar_width"
-        android:src="@drawable/ic_video"
-        android:paddingTop="@dimen/nav_header_vertical_spacing" />
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:src="@drawable/ic_video" />
 
     <TextView
         android:id="@+id/tv_nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="@string/signature"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView

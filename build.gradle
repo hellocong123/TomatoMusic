@@ -18,6 +18,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://jitpack.io"
+
+        }
     }
 }
 
@@ -25,7 +29,9 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-
+//此段花括号中代码是闭包
+//除了ext.xxx=value这种定义方法外，还可以使用ext{}这种书写方法。
+//ext{}不是ext(Closure)对应的函数调用。但是ext{}中的{}确实是闭包。
 ext {
     //最小版本
     minSdkVersion = 15

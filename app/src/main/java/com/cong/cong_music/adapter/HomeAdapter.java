@@ -4,10 +4,9 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.cong.cong_music.activity.base.BaseActivity;
-import com.cong.cong_music.fragment.MeFragment;
+import com.cong.cong_music.fragment.me.MeFragment;
 import com.cong.cong_music.fragment.MusicFragment;
-import com.cong.cong_music.fragment.VideoFragment;
+import com.cong.cong_music.fragment.video.VideoFragment;
 
 /**
  * @author Cong

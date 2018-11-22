@@ -1,21 +1,24 @@
 package com.cong.cong_music.api;
 
 import com.cong.cong_music.Consts;
-import com.cong.cong_music.User;
+import com.cong.cong_music.bean.User;
 import com.cong.cong_music.bean.Advertisement;
+import com.cong.cong_music.bean.Comment;
 import com.cong.cong_music.bean.ListResponse;
 import com.cong.cong_music.bean.Session;
 import com.cong.cong_music.bean.Song;
 import com.cong.cong_music.bean.SongList;
+import com.cong.cong_music.bean.Video;
 import com.cong.cong_music.bean.response.DetailResponse;
 import com.cong.cong_music.interceptor.HttpLoggingInterceptor;
 import com.cong.cong_music.util.LogUtil;
 import com.cong.cong_music.util.SharedPreferencesUtil;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
+
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -154,6 +157,34 @@ public class RetrofitUtils {
     public Observable<DetailResponse<SongList>> listDetail(String id) {
         return apiService.listDetail(id);
     }
+
+    //请求评论数据接口
+    public Observable<ListResponse<Comment>> comments(Map<String, String> data) {
+        return apiService.comments(data);
+    }
+
+    //发布评论数据接口
+    public Observable<DetailResponse<Comment>> createComment(Comment comment) {
+        return apiService.createComment(comment);
+    }
+
+    //取消点赞
+    public Observable<DetailResponse<Comment>> unlike(String id) {
+        return apiService.unlike(id);
+    }
+
+    //点赞
+    public Observable<DetailResponse<Comment>> like(String commentId) {
+        return apiService.like(commentId);
+    }
+
+    //视频接口
+    public Observable<ListResponse<Video>> videos() {
+        //为了简单这里没有传入参数，如果要传就是热门最新等
+        HashMap<String, String> data = new HashMap<>();
+        return apiService.videos(data);
+    }
+
 //    public Observable<ListResponse<SearchHot>> prompt(String content) {
 //        HashMap<String, String> query = new HashMap<>();
 //        query.put(Consts.TITLE,content);
@@ -175,17 +206,13 @@ public class RetrofitUtils {
 //        return apiService.createList(list);
 //    }
 //
-//    public Observable<DetailResponse<Comment>> createComment(Comment comment) {
-//        return apiService.createComment(comment);
-//    }
+
 //
 //    public Observable<DetailResponse<List>> collectionList(String listId) {
 //        return apiService.collectionList(listId);
 //    }
 //
-//    public Observable<DetailResponse<Comment>> like(String commentId) {
-//        return apiService.like(commentId);
-//    }
+
 //
 //    public Observable<DetailResponse<User>> follow(String userId) {
 //        return apiService.follow(userId);
@@ -199,9 +226,7 @@ public class RetrofitUtils {
 //        return apiService.cancelCollectionList(id);
 //    }
 //
-//    public Observable<DetailResponse<Comment>> unlike(String id) {
-//        return apiService.unlike(id);
-//    }
+
 //
 //    public Observable<DetailResponse<List>> addSongInSheet(String songId,String listId) {
 //        return apiService.addSongInSheet(songId,listId);
@@ -250,10 +275,7 @@ public class RetrofitUtils {
 //        return apiService.createFeed(data);
 //    }
 //
-//    public Observable<ListResponse<Comment>> comments(Map<String,String> data) {
-//        return apiService.comments(data);
-//    }
-//
+
 //    public Observable<ListResponse<User>> myFriends(String id,String nickname) {
 //        HashMap<String, String> data = new HashMap<>();
 //
@@ -293,10 +315,7 @@ public class RetrofitUtils {
 //        return apiService.topicDetail(String.valueOf(-1),data);
 //    }
 //
-//    public Observable<ListResponse<Video>> videos() {
-//        HashMap<String, String> data = new HashMap<>();
-//        return apiService.videos(data);
-//    }
+
 //
 //    public Observable<DetailResponse<Video>> videoDetail(String id) {
 //        return apiService.videoDetail(id);

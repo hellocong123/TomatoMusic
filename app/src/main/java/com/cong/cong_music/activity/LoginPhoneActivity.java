@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 
 import com.cong.cong_music.R;
-import com.cong.cong_music.User;
+import com.cong.cong_music.bean.User;
 import com.cong.cong_music.activity.base.BaseCommonActivity;
 import com.cong.cong_music.api.RetrofitUtils;
 import com.cong.cong_music.bean.Session;
