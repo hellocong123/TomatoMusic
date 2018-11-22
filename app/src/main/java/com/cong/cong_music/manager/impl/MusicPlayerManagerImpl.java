@@ -18,7 +18,7 @@ public class MusicPlayerManagerImpl implements MusicPlayerManager {
     private final Context context;
 
     /**
-     * 媒体播放器
+     * 媒体播放器m
      */
     private MediaPlayer player;
     public static synchronized MusicPlayerManager getInstance(Context context) {
